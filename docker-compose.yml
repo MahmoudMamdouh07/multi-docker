@@ -4,8 +4,10 @@ services:
     image: "doo7a/multi-client"
     mem_limit: 128m
     hostname: client
+    restart: always
   server:
     image: "doo7a/multi-server"
+    restart: always
     mem_limit: 128m
     hostname: api
     environment:
@@ -20,6 +22,7 @@ services:
     image: "doo7a/multi-worker"
     mem_limit: 128m
     hostname: worker
+    restart: always
     environment:
       - REDIS_HOST=$REDIS_HOST
       - REDIS_PORT=$REDIS_PORT
@@ -27,5 +30,6 @@ services:
     image: "doo7a/multi-nginx"
     mem_limit: 128m
     hostname: nginx
+    restart: always
     ports:
       - "80:80"
